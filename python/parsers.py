@@ -1,6 +1,14 @@
 from datetime import datetime, timedelta
 import operators
 
+def parseField(dyct, field):
+    parts = field.split('.')
+    value = dyct[parts[0]]
+    if len(parts) == 1:
+        return value
+    else:
+        return parseField(value, '.'.join(parts[1:]))
+
 def parseTerm(term, dict_doc, dict_base, results):
     source = term['source']
     type = term['type']
@@ -8,9 +16,9 @@ def parseTerm(term, dict_doc, dict_base, results):
         if source == 'constant':
             value = term['value']
         elif source == 'doc':
-            value = dict_doc[term['value']]
+            value = parseField(dict_doc, term['value'])
         elif source == 'base':
-            value = dict_base[term['value']]
+            value = parseField(dict_base, term['value'])
         elif source == 'result':
             value = results[int(term['value'])]
         if type == 'str':
