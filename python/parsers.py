@@ -1,9 +1,15 @@
+import re
 from datetime import datetime, timedelta
 import operators
 
 def parseField(dyct, field):
+    if '+' in field:
+        return ''.join([str(parseField(dyct, x)) for x in field.split('+')])
     parts = field.split('.')
-    value = dyct[parts[0]]
+    try:
+        value = dyct[parts[0]]
+    except KeyError:
+        return ''
     if len(parts) == 1:
         return value
     else:
@@ -25,11 +31,16 @@ def parseTerm(term, dict_doc, dict_base, results):
             return str(value)
         elif type == 'int':
             return int(value)
+        elif type == 'boolean':
+            return bool(value)
         elif type == 'float':
+            if isinstance(value,str):
+                value = re.sub(r'[^0-9]', '', value)
+                value = value[0:-2] + '.' + value[-2:]
             return float(value)
         elif type == 'date':
             if len(value) == 10:
-                format = '%Y-%m-%d'
+                format = '%d/%m/%Y'
             elif len(value) == 19:
                 format = '%Y-%m-%d %H:%M:%S'
             return datetime.strptime(value,format)
@@ -60,4 +71,8 @@ def parseOperator(condition):
         operator = operators.less
     elif condition == 'difference':
         operator = operators.difference
+    elif condition == 'and':
+        operator = operators.And
+    elif condition == 'or':
+        operator = operators.Or
     return operator

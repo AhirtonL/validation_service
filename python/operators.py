@@ -1,4 +1,10 @@
 
+def And(a,b):
+    return a and b
+
+def Or(a,b):
+    return a or b
+
 def equals(a,b):
     return a == b
 
@@ -18,10 +24,10 @@ def less_eq(a,b):
     return a <= b
 
 def exists(a):
-    return a is not None
+    return a not in (None,'')
 
 def not_exists(a):
-    return a is None
+    return a in (None,'')
 
 def difference(a,b):
     return a - b
