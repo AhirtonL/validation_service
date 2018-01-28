@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 const API_ROOT = "/validation"
 const API_PORT = 8080
 
-const COMMAND = "bash ./sh/run_validation.sh "
+const COMMAND = "python validation_driver.py "
 
 router.post('/', function(req, res){
 	var data = req.body
