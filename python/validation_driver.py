@@ -26,9 +26,13 @@ for rule in dict_rules['rules']:
     rule['validation'] = results[-1]
     rules_validated.append(rule)
 
-response = {}
+response = []
 
 for rule in rules_validated:
-    response[str(rule['id'])] = str(rule['validation'])
+    response.append({
+        'id_regra': rule['id'],
+        'description': rule['description'],
+        'validated': str(rule['validation'])
+    })
 
 print response
