@@ -29,7 +29,11 @@ for rule in dict_rules['rules']:
     for condition in rule['conditions']:
         operator = parsers.parseOperator(condition['operator'])
         terms = [parsers.parseTerm(x,dict_doc,dict_base,results) for x in condition['terms']]
-        results.append(operator(*terms))
+        try:
+            result = operator(*terms)
+        except:
+           result = False
+        results.append(result)
     rule['validation'] = results[-1]
     rules_validated.append(rule)
 

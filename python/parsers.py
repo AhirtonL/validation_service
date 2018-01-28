@@ -2,14 +2,14 @@ import re
 from datetime import datetime, timedelta
 import operators
 
-def parseField(dyct, field):
+def parseField(dyct, field, default=None):
     if '+' in field:
-        return ''.join([str(parseField(dyct, x)) for x in field.split('+')])
+        return ''.join([str(parseField(dyct, x, default='')) for x in field.split('+')])
     parts = field.split('.')
     try:
         value = dyct[parts[0]]
     except KeyError:
-        return ''
+        value = default
     if len(parts) == 1:
         return value
     else:
@@ -34,7 +34,7 @@ def parseTerm(term, dict_doc, dict_base, results):
         elif type == 'boolean':
             return bool(value)
         elif type == 'float':
-            if isinstance(value,str):
+            if isinstance(value,str) or isinstance(value,unicode):
                 value = re.sub(r'[^0-9]', '', value)
                 value = value[0:-2] + '.' + value[-2:]
             return float(value)

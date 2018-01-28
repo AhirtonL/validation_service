@@ -24,16 +24,10 @@ def less_eq(a,b):
     return a <= b
 
 def exists(a):
-    return a not in (None,'')
+    return a is not None
 
 def not_exists(a):
-    return a in (None,'')
+    return a is None
 
 def difference(a,b):
     return a - b
-
-def apply(list_terms, list_operators):
-    for operator in list_operators:
-        result = operator(*list_terms)
-        list_terms = [result]
-    return result
