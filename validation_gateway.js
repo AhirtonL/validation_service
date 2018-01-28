@@ -10,6 +10,7 @@ const API_PORT = 8080
 const COMMAND = "python validation_driver.py "
 
 router.post('/', function(req, res){
+    res.send('OKKKKKK')
 	var data = req.body
 	var doc = JSON.stringify(data.doc)
 	var base = JSON.stringify(data.base)
