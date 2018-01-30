@@ -1,4 +1,4 @@
-#!/bin/python
+# -*- coding: utf-8 -*-
 
 #dependencias comuns
 import sys, json

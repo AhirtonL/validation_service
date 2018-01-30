@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import re
 from datetime import datetime, timedelta
 import operators
 
 def lookupField(dyct, field, default=None):
     if '+' in field:
-        to_return = ''.join([str(parseField(dyct, x, default='')) for x in field.split('+')])
+        to_return = ''.join([str(lookupField(dyct, x, default='')) for x in field.split('+')])
         return to_return if to_return != '' else default
     parts = field.split('.')
     try:
@@ -14,13 +16,13 @@ def lookupField(dyct, field, default=None):
     if len(parts) == 1:
         return value
     else:
-        return parseField(value, '.'.join(parts[1:]), default)
+        return lookupField(value, '.'.join(parts[1:]), default)
 
 def forceType(value, tipe):
     if value is None:
         return None
     elif tipe == 'str':
-            return str(value)
+        return value.encode('utf-8')
     elif tipe == 'int':
         return int(value)
     elif tipe == 'boolean':

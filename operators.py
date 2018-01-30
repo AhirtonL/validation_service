@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 def And(a,b):
     return a and b
