@@ -1,1 +1,508 @@
-{"type":"RULE_SET","id":"RULE_00002","rules":[{"type":"RULE","id":"RULE_00001","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"g_nome"},{"type":"str","source":"base","value":"user.name"}]}]},{"type":"RULE","id":"RULE_00002","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"g_cod_processo"},{"type":"str","source":"base","value":"process.numberProcess"}]}]},{"type":"RULE","id":"RULE_00003","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"g_tipo_despesa"},{"type":"str","source":"base","value":"expense.typeExpense"}]}]},{"type":"RULE","id":"RULE_00004","description":"","conditions":[{"operator":"equals","terms":[{"type":"float","source":"doc","value":"g_valor"},{"type":"float","source":"base","value":"requestedValue"}]}]},{"type":"RULE","id":"RULE_00005","description":"","conditions":[{"operator":"less_eq","terms":[{"type":"date","source":"doc","value":"c_data_pgto"},{"type":"date","source":"doc","value":"g_data_vencimento"}]}]},{"type":"RULE","id":"RULE_00006","description":"","conditions":[{"operator":"equals","terms":[{"type":"float","source":"doc","value":"c_valor_pgto"},{"type":"float","source":"doc","value":"g_valor"}]}]},{"type":"RULE","id":"RULE_00007","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"c_linha_digitavel1+c_linha_digitavel2"},{"type":"str","source":"doc","value":"g_linha_digitavel"}]}]},{"type":"RULE","id":"RULE_00008","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"g_cod_processo"},{"type":"str","source":"doc","value":"p_cod_processo"}]}]},{"type":"RULE","id":"RULE_00009","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"base","value":"user.name"},{"type":"str","source":"doc","value":"p_cliente"}]}]},{"type":"RULE","id":"RULE_00010","description":"","conditions":[{"operator":"exists","terms":[{"type":"str","source":"doc","value":"p_autenticacao_mecanica"}]}]},{"type":"RULE","id":"RULE_00011","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"doc","value":"ptj_cod_processo"},{"type":"str","source":"doc","value":"p_cod_processo"}]}]},{"type":"RULE","id":"RULE_00012","description":"","conditions":[{"operator":"equals","terms":[{"type":"str","source":"base","value":"company.nameReason"},{"type":"str","source":"doc","value":"p_autor"}]},{"operator":"equals","terms":[{"type":"str","source":"base","value":"company.cnpj"},{"type":"str","source":"doc","value":"g_cnpj"}]},{"operator":"and","terms":[{"type":"boolean","source":"result","value":"0"},{"type":"boolean","source":"result","value":"1"}]}]}]}
+{
+  "type": "RULE_SET",
+  "id": "RULE_00002",
+  "rules": [
+    {
+      "type": "RULE",
+      "id": "RULE_00001",
+      "description": "Nome do cliente na guia deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_nome"
+            },
+            {
+              "type": "str",
+              "source": "base",
+              "value": "user.name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00002",
+      "description": "Número do processo na guia deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cod_processo"
+            },
+            {
+              "type": "str",
+              "source": "base",
+              "value": "process.numberProcess"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00003",
+      "description": "Tipo de despesa na guia deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_tipo_despesa"
+            },
+            {
+              "type": "str",
+              "source": "base",
+              "value": "expense.typeExpense"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00004",
+      "description": "Valor informado na guia deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "float",
+              "source": "doc",
+              "value": "g_valor"
+            },
+            {
+              "type": "float",
+              "source": "base",
+              "value": "requestedValue"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00005",
+      "description": "Data do pagamento no comprovante deve ser anterior à data de vencimento da guia",
+      "conditions": [
+        {
+          "operator": "less_eq",
+          "terms": [
+            {
+              "type": "date",
+              "source": "doc",
+              "value": "c_data_pgto"
+            },
+            {
+              "type": "date",
+              "source": "doc",
+              "value": "g_data_vencimento"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00006",
+      "description": "Valor do pagamento no comprovante deve ser igual ao da guia",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "float",
+              "source": "doc",
+              "value": "c_valor_pgto"
+            },
+            {
+              "type": "float",
+              "source": "doc",
+              "value": "g_valor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00007",
+      "description": "Linha digitável no comprovante deve ser igual à da guia",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "c_linha_digitavel1+c_linha_digitavel2"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_linha_digitavel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00008",
+      "description": "Número do processo na petição deve ser igual ao da guia",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cod_processo"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "p_cod_processo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00009",
+      "description": "Nome do cliente na petição deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "user.name"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "p_cliente"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00010",
+      "description": "A petição deve possuir autenticação mecânica",
+      "conditions": [
+        {
+          "operator": "exists",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "p_autenticacao_mecanica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00011",
+      "description": "Número do processo no print screen do TJ deve ser igual ao da petição",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "ptj_cod_processo"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "p_cod_processo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00012",
+      "description": "Autor da petição deve estar associado ao CNPJ da guia",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "company.nameReason"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "p_autor"
+            }
+          ]
+        },
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "company.cnpj"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cnpj"
+            }
+          ]
+        },
+        {
+          "operator": "and",
+          "terms": [
+            {
+              "type": "boolean",
+              "source": "result",
+              "value": "0"
+            },
+            {
+              "type": "boolean",
+              "source": "result",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00013",
+      "description": "Nome do cliente no print screen do TJ deve ser igual ao do cadastro",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "ptj_nome"
+            },
+            {
+              "type": "str",
+              "source": "base",
+              "value": "user.name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00014",
+      "description": "Número do processo no print screen do TJ deve ser igual ao da guia",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "ptj_cod_processo"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cod_processo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00015",
+      "description": "Código da custa na guia deve ser igual ao cadastrado (TODO: verificar nome do campo na base)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cod_custa"
+            },
+            {
+              "type": "str",
+              "source": "base",
+              "value": "expense.codeExpense"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00016",
+      "description": "Número do processo na determinação judicial deve ser igual ao da guia (TODO: verificar nome do campo na determinação judicial)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "g_cod_processo"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "dj_cod_processo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00017",
+      "description": "Descrição da custa na determinação judicial deve corresponder à do cadastro (TODO: verificar nome do campo na determinação judicial)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "expense.descriptionExpense"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "dj_nome_custa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00018",
+      "description": "... (TODO: entender e implementar a regra)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "expense.descriptionExpense"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "dj_nome_custa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00019",
+      "description": "... (TODO: entender e implementar a regra)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "expense.descriptionExpense"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "c_cod_processo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00020",
+      "description": "Valor informado pelo correio deve ser igual ao cadastrado (TODO: verificar nome do campo valor no documento correio)",
+      "conditions": [
+        {
+          "operator": "equals",
+          "terms": [
+            {
+              "type": "str",
+              "source": "base",
+              "value": "requestedValue"
+            },
+            {
+              "type": "str",
+              "source": "doc",
+              "value": "c_valor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "RULE",
+      "id": "RULE_00021",
+      "description": "Data de pagamento no comprovante deve ser no máximo 60 dias após a data de emissão da despesa no cadastro (TODO: verificar formato de data na base)",
+      "conditions": [
+        {
+          "operator": "difference",
+          "terms": [
+            {
+              "type": "date",
+              "source": "doc",
+                "value": "c_data_pgto"
+            },
+            {
+              "type": "date",
+              "source": "base",
+              "value": "expense.releaseDay"
+            }
+          ]
+        },
+        {
+          "operator": "less_eq",
+          "terms": [
+            {
+              "type": "timedelta",
+              "source": "result",
+              "value": "0"
+            },
+            {
+              "type": "timedelta",
+              "source": "constant",
+              "value": "60 days"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #dependencias comuns
-import json
+import json, re
 
 #dependencias adicionais
 import parsers
@@ -17,7 +17,7 @@ def run(data):
         dict_rules = None
 
     if not dict_rules:
-        dict_rules = json.loads(open('regras.json').read())
+        dict_rules = json.loads(re.sub(r'[\t\n\r]','',open('regras.json').read()))
 
     rules_validated = []
     for rule in dict_rules['rules']:
