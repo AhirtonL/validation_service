@@ -17,7 +17,7 @@ def run(data):
 
     if not dict_rules:
         dict_rules = json.loads(open('regras.json').read())
-    
+
     rules_validated = []
     for rule in dict_rules['rules']:
         results = []
@@ -27,7 +27,7 @@ def run(data):
             try:
                 result = operator(*terms)
             except:
-               result = False
+                result = False
             results.append(result)
         rule['validation'] = results[-1]
         rules_validated.append(rule)

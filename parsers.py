@@ -2,9 +2,10 @@ import re
 from datetime import datetime, timedelta
 import operators
 
-def parseField(dyct, field, default=None):
+def lookupField(dyct, field, default=None):
     if '+' in field:
-        return ''.join([str(parseField(dyct, x, default='')) for x in field.split('+')])
+        to_return = ''.join([str(parseField(dyct, x, default='')) for x in field.split('+')])
+        return to_return if to_return != '' else default
     parts = field.split('.')
     try:
         value = dyct[parts[0]]
@@ -13,42 +14,51 @@ def parseField(dyct, field, default=None):
     if len(parts) == 1:
         return value
     else:
-        return parseField(value, '.'.join(parts[1:]))
+        return parseField(value, '.'.join(parts[1:]), default)
+
+def forceType(value, tipe):
+    if value is None:
+        return None
+    elif tipe == 'str':
+            return str(value)
+    elif tipe == 'int':
+        return int(value)
+    elif tipe == 'boolean':
+        return bool(value)
+    elif tipe == 'float':
+        if isinstance(value, str) or isinstance(value, unicode):
+            value = re.sub(r'[^0-9]', '', value)
+            value = value[0:-2] + '.' + value[-2:]
+        return float(value)
+    elif tipe == 'date':
+        if len(value) == 10:
+            format = '%d/%m/%Y'
+        elif len(value) == 19:
+            format = '%Y-%m-%d %H:%M:%S'
+        return datetime.strptime(value, format)
+    elif tipe == 'timedelta':
+        if not isinstance(value, timedelta):
+            amount, unit = value.split(' ')
+            value = timedelta(**{unit: int(amount)})
+        return value
+
+def parseField(dyct, field, tipe, default=None):
+    value = lookupField(dyct, field, default)
+    value = forceType(value, tipe)
+    return value
 
 def parseTerm(term, dict_doc, dict_base, results):
     source = term['source']
-    type = term['type']
+    tipe = term['type']
     try:
         if source == 'constant':
             value = term['value']
         elif source == 'doc':
-            value = parseField(dict_doc, term['value'])
+            return parseField(dict_doc, term['value'], tipe)
         elif source == 'base':
-            value = parseField(dict_base, term['value'])
+            return parseField(dict_base, term['value'], tipe)
         elif source == 'result':
-            value = results[int(term['value'])]
-        if type == 'str':
-            return str(value)
-        elif type == 'int':
-            return int(value)
-        elif type == 'boolean':
-            return bool(value)
-        elif type == 'float':
-            if isinstance(value,str) or isinstance(value,unicode):
-                value = re.sub(r'[^0-9]', '', value)
-                value = value[0:-2] + '.' + value[-2:]
-            return float(value)
-        elif type == 'date':
-            if len(value) == 10:
-                format = '%d/%m/%Y'
-            elif len(value) == 19:
-                format = '%Y-%m-%d %H:%M:%S'
-            return datetime.strptime(value,format)
-        elif type == 'timedelta':
-            if not isinstance(value, timedelta):
-                amount, unit = value.split(' ')
-                value = timedelta(**{unit:int(amount)})
-            return value
+            return results[int(term['value'])]
     except:
         return None
 

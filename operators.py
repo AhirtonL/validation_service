@@ -6,7 +6,7 @@ def Or(a,b):
     return a or b
 
 def equals(a,b):
-    return a == b
+    return a == b != None
 
 def different(a,b):
     return a != b
