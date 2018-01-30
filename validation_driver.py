@@ -14,10 +14,10 @@ def run(data):
         dict_rules = data['regras']
     except KeyError:
         dict_rules = None
-    print dict_rules
+
     if not dict_rules:
         dict_rules = json.loads(open('regras.json').read())
-    print dict_rules
+    
     rules_validated = []
     for rule in dict_rules['rules']:
         results = []
