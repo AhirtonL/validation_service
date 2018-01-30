@@ -87,4 +87,6 @@ def parseOperator(condition):
         operator = operators.And
     elif condition == 'or':
         operator = operators.Or
+    elif condition == 'mock_true':
+        operator = operators.mockTrue
     return operator

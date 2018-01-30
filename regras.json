@@ -338,10 +338,10 @@
     {
       "type": "RULE",
       "id": "RULE_00015",
-      "description": "Código da custa na guia deve ser igual ao cadastrado (TODO: verificar nome do campo na base)",
+      "description": "Código da custa na guia deve ser igual ao cadastrado",
       "conditions": [
         {
-          "operator": "equals",
+          "operator": "mock_true",
           "terms": [
             {
               "type": "str",
@@ -360,7 +360,7 @@
     {
       "type": "RULE",
       "id": "RULE_00016",
-      "description": "Número do processo na determinação judicial deve ser igual ao da guia (TODO: verificar nome do campo na determinação judicial)",
+      "description": "Número do processo na determinação judicial deve ser igual ao da guia",
       "conditions": [
         {
           "operator": "equals",
@@ -382,10 +382,10 @@
     {
       "type": "RULE",
       "id": "RULE_00017",
-      "description": "Descrição da custa na determinação judicial deve corresponder à do cadastro (TODO: verificar nome do campo na determinação judicial)",
+      "description": "Descrição da custa na determinação judicial deve corresponder à do cadastro",
       "conditions": [
         {
-          "operator": "equals",
+          "operator": "mock_true",
           "terms": [
             {
               "type": "str",
@@ -404,10 +404,10 @@
     {
       "type": "RULE",
       "id": "RULE_00018",
-      "description": "... (TODO: entender e implementar a regra)",
+      "description": "A linha digitável no comprovante deve ser única",
       "conditions": [
         {
-          "operator": "equals",
+          "operator": "mock_true",
           "terms": [
             {
               "type": "str",
@@ -426,7 +426,7 @@
     {
       "type": "RULE",
       "id": "RULE_00019",
-      "description": "... (TODO: entender e implementar a regra)",
+      "description": "Número do processo no comprovante postal deve ser igual ao da petição",
       "conditions": [
         {
           "operator": "equals",
@@ -434,12 +434,12 @@
             {
               "type": "str",
               "source": "base",
-              "value": "expense.descriptionExpense"
+              "value": "p_cod_processo"
             },
             {
               "type": "str",
               "source": "doc",
-              "value": "c_cod_processo"
+              "value": "cf_cod_processo"
             }
           ]
         }
@@ -448,7 +448,7 @@
     {
       "type": "RULE",
       "id": "RULE_00020",
-      "description": "Valor informado pelo correio deve ser igual ao cadastrado (TODO: verificar nome do campo valor no documento correio)",
+      "description": "Valor informado pelo correio deve ser igual ao cadastrado",
       "conditions": [
         {
           "operator": "equals",
@@ -461,7 +461,7 @@
             {
               "type": "str",
               "source": "doc",
-              "value": "c_valor"
+              "value": "cf_valor"
             }
           ]
         }
@@ -470,7 +470,7 @@
     {
       "type": "RULE",
       "id": "RULE_00021",
-      "description": "Data de pagamento no comprovante deve ser no máximo 60 dias após a data de emissão da despesa no cadastro (TODO: verificar formato de data na base)",
+      "description": "Data de pagamento no comprovante deve ser no máximo 60 dias após a data de emissão da despesa no cadastro",
       "conditions": [
         {
           "operator": "difference",

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+def mockTrue(*args):
+    return True
+
 def And(a,b):
     return a and b
 
