@@ -27,7 +27,7 @@ def run(data):
             terms = [parsers.parseTerm(x,dict_doc,dict_base,results) for x in condition['terms']]
             try:
                 result = operator(*terms)
-            except:
+            except Exception as e:
                 result = False
             results.append(result)
         rule['validation'] = results[-1]

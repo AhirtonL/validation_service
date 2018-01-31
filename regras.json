@@ -11,12 +11,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "g_nome"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "user.name"
             }
@@ -33,12 +33,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "base",
               "value": "process.numberProcess"
             }
@@ -55,12 +55,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "g_tipo_despesa"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "expense.typeExpense"
             }
@@ -77,12 +77,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "float",
+              "type": "currency",
               "source": "doc",
               "value": "g_valor"
             },
             {
-              "type": "float",
+              "type": "currency",
               "source": "base",
               "value": "requestedValue"
             }
@@ -121,12 +121,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "float",
+              "type": "currency",
               "source": "doc",
               "value": "c_valor_pgto"
             },
             {
-              "type": "float",
+              "type": "currency",
               "source": "doc",
               "value": "g_valor"
             }
@@ -143,12 +143,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "c_linha_digitavel1+c_linha_digitavel2"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_linha_digitavel"
             }
@@ -165,12 +165,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "p_cod_processo"
             }
@@ -187,12 +187,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "user.name"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "p_cliente"
             }
@@ -209,7 +209,7 @@
           "operator": "exists",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "p_autenticacao_mecanica"
             }
@@ -226,12 +226,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "ptj_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "p_cod_processo"
             }
@@ -248,12 +248,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "company.nameReason"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "p_autor"
             }
@@ -263,12 +263,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "base",
               "value": "company.cnpj"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cnpj"
             }
@@ -300,12 +300,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "ptj_nome"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "user.name"
             }
@@ -322,12 +322,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "ptj_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cod_processo"
             }
@@ -344,12 +344,12 @@
           "operator": "mock_true",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cod_custa"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "base",
               "value": "expense.codeExpense"
             }
@@ -366,12 +366,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "g_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "dj_cod_processo"
             }
@@ -388,12 +388,12 @@
           "operator": "mock_true",
           "terms": [
             {
-              "type": "str",
+              "type": "text",
               "source": "base",
               "value": "expense.descriptionExpense"
             },
             {
-              "type": "str",
+              "type": "text",
               "source": "doc",
               "value": "dj_nome_custa"
             }
@@ -408,18 +408,7 @@
       "conditions": [
         {
           "operator": "mock_true",
-          "terms": [
-            {
-              "type": "str",
-              "source": "base",
-              "value": "expense.descriptionExpense"
-            },
-            {
-              "type": "str",
-              "source": "doc",
-              "value": "dj_nome_custa"
-            }
-          ]
+          "terms": []
         }
       ]
     },
@@ -432,12 +421,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
-              "source": "base",
+              "type": "num_seq",
+              "source": "doc",
               "value": "p_cod_processo"
             },
             {
-              "type": "str",
+              "type": "num_seq",
               "source": "doc",
               "value": "cf_cod_processo"
             }
@@ -454,12 +443,12 @@
           "operator": "equals",
           "terms": [
             {
-              "type": "str",
+              "type": "currency",
               "source": "base",
               "value": "requestedValue"
             },
             {
-              "type": "str",
+              "type": "currency",
               "source": "doc",
               "value": "cf_valor"
             }
