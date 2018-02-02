@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 def hello():
     data = request.get_data()
+    print data
     results = validation_driver.run(data)
     return json.dumps(results).encode('utf-8')
 
