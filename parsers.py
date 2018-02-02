@@ -49,11 +49,11 @@ def castToCurrency(value):
 
 def lookupField(dyct, field, default=None):
 	if '+' in field:
-		to_return = ''.join([str(lookupField(dyct, x, default='')) for x in field.split('+')])
+		to_return = ''.join([lookupField(dyct, x, default='') for x in field.split('+')])
 		return to_return if to_return != '' else default
 	parts = field.split('.')
 	try:
-		value = dyct[parts[0]]
+		value = dyct[parts[0]] #.encode('utf-8')
 	except KeyError:
 		value = default
 	if len(parts) == 1:
@@ -78,6 +78,8 @@ def forceType(value, tipe):
 		return castToCurrency(value)
 	elif tipe == 'date':
 		return castToDate(value)
+	elif tipe == 'array':
+		return value.split(',')
 	elif tipe == 'timedelta':
 		if not isinstance(value, timedelta):
 			amount, unit = value.split(' ')
@@ -101,7 +103,7 @@ def parseTerm(term, dict_doc, dict_base, results):
 			return parseField(dict_base, term['value'], tipe)
 		elif source == 'result':
 			return results[int(term['value'])]
-	except:
+	except Exception as e:
 		return None
 
 def parseOperator(condition):
@@ -129,4 +131,6 @@ def parseOperator(condition):
 		operator = operators.Or
 	elif condition == 'mock_true':
 		operator = operators.mockTrue
+	elif condition == 'segment':
+		operator = operators.segment
 	return operator

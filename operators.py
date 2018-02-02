@@ -35,3 +35,7 @@ def not_exists(a):
 
 def difference(a,b):
     return a - b
+
+def segment(a,b,c):
+    return a[b,c]
+

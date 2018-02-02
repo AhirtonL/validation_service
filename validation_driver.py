@@ -22,9 +22,11 @@ def run(data):
     rules_validated = []
     for rule in dict_rules['rules']:
         results = []
+        #print rule['id']
         for condition in rule['conditions']:
             operator = parsers.parseOperator(condition['operator'])
             terms = [parsers.parseTerm(x,dict_doc,dict_base,results) for x in condition['terms']]
+            #print terms
             try:
                 result = operator(*terms)
             except Exception as e:
